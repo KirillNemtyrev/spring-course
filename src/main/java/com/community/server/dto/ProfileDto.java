@@ -9,7 +9,7 @@ import java.util.List;
 public class ProfileDto {
     private String username;
     private String name;
-    private BigDecimal balance;
-    private BigDecimal backpack;
+    private BigDecimal balance = BigDecimal.ZERO;
+    private BigDecimal backpack = BigDecimal.ZERO;
     private List<CompanyDto> company;
 }

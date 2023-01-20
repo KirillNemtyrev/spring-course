@@ -24,6 +24,9 @@ public class CompanyEntity {
     @Size(min=2, max = 40)
     private String owner;
 
+    @Column(length=10485760)
+    private String description;
+
     @NotNull
     private Long stock = 0L;
 

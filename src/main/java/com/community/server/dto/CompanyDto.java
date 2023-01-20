@@ -13,6 +13,8 @@ public class CompanyDto {
     private String owner;
     private List<StockEntity> stocks;
     private Long stock;
+    private Long countHave;
+    private String description;
 
     private BigDecimal cost;
     private float procent;

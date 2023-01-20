@@ -10,6 +10,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -43,11 +44,11 @@ public class UserEntity {
     @Size(max = 100)
     private String password;
 
-    @NotNull
     private BigDecimal balance = BigDecimal.ZERO;
 
-    @NotNull
-    private BigDecimal backpack = BigDecimal.ZERO;
+    private BigDecimal brokerage = BigDecimal.ZERO;
+
+    private Date lastDividend;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",

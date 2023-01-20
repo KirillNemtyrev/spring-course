@@ -1,13 +1,14 @@
 package com.community.server.controller;
 
+import com.community.server.body.BuyBody;
 import com.community.server.dto.ProfileDto;
 import com.community.server.service.ProfileService;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/profile")

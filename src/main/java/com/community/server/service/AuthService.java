@@ -10,6 +10,7 @@ import com.community.server.repository.RoleRepository;
 import com.community.server.repository.UserRepository;
 import com.community.server.security.JwtAuthenticationResponse;
 import com.community.server.security.JwtTokenProvider;
+import lombok.SneakyThrows;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,6 +19,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.Collections;
 
 @Service
@@ -37,12 +41,13 @@ public class AuthService {
         this.authenticationManager = authenticationManager;
     }
 
+    @SneakyThrows
     public ResponseEntity<?> signup(SignUpBody signUpBody) {
 
-        if(!signUpBody.getUsername().matches("^[a-zA-Z0-9]+$"))
+        if(!signUpBody.getUsername().matches("^{6,40}[a-zA-Z0-9]+$"))
             return ResponseEntity.badRequest().body("Invalid username!");
 
-        if(!signUpBody.getPassword().matches("^[a-zA-Z0-9]+$"))
+        if(!signUpBody.getPassword().matches("^{6,40}[a-zA-Z0-9]+$"))
             return ResponseEntity.badRequest().body("Wrong password format!");
 
         if (userRepository.existsByUsername(signUpBody.getUsername()))
@@ -59,6 +64,12 @@ public class AuthService {
 
         userEntity.setRoles(Collections.singleton(roleEntity));
 
+        File defaultPhoto = new File("resources/default.png");
+        BufferedImage imagePhoto = ImageIO.read(defaultPhoto);
+        File photo = new File("resources/" + signUpBody.getUsername() + ".png");
+        if (photo.createNewFile()) {
+            ImageIO.write(imagePhoto, "png", photo);
+        }
         userRepository.save(userEntity);
         return ResponseEntity.ok("User registered successfully");
     }
