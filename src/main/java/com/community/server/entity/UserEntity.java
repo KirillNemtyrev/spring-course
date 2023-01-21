@@ -45,7 +45,6 @@ public class UserEntity {
     private String password;
 
     private BigDecimal balance = BigDecimal.ZERO;
-
     private BigDecimal brokerage = BigDecimal.ZERO;
 
     private Date lastDividend;

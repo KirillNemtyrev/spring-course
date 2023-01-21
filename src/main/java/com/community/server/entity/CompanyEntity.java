@@ -29,5 +29,4 @@ public class CompanyEntity {
 
     @NotNull
     private Long stock = 0L;
-
 }

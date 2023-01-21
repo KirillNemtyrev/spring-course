@@ -97,7 +97,7 @@ public class ProfileService {
         companyList.sort(Comparator.comparing(CompanyDto::getCost));
         profileDto.setCompany(companyList);
 
-        for (BackPackEntity backPackEntity : backPackEntities){
+        for (BackPackEntity backPackEntity : backPackEntities) {
 
             CompanyDto companyDto = helper.get(backPackEntity.getCompanyId());
             if (companyDto == null) {
